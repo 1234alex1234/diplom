@@ -4,6 +4,16 @@ const regexFunc = () => {
   const formsControl = document.querySelectorAll('.form-control');
 
   formsHorizontal.forEach(formHorizontal => {
+    const inputs = formHorizontal.querySelectorAll('input');
+
+    inputs.forEach(input => {
+
+      if (input.name == 'phone') {
+        input.setAttribute('maxlength', 16);
+      }
+
+    });
+
     formHorizontal.addEventListener("input", function (e) {
 
       formsControl.forEach(formControl => {
