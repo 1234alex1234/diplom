@@ -3,6 +3,8 @@ const sendFormFunc = ({
   someElem = [],
 }) => {
   const formHorizontals = document.querySelectorAll(formClass);
+  const headerModal = document.querySelector('.header-modal');
+  const callBackForm = headerModal.querySelector('form');
 
   const validate = (lists) => {
     let isError = false;
@@ -78,6 +80,8 @@ const sendFormFunc = ({
   formHorizontals.forEach(formHorizontal => {
     formHorizontal.addEventListener("submit", submitForm);
   });
+
+  callBackForm.addEventListener("submit", submitForm);
 };
 
 export default sendFormFunc;
