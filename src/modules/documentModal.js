@@ -50,6 +50,7 @@ const documentModalFunc = () => {
       modal.style.display = "block";
       overlay.style.display = 'block';
       modalImg.src = this.href;
+      document.querySelector('body').style.overflow = 'hidden';
     });
   });
 
@@ -57,11 +58,15 @@ const documentModalFunc = () => {
   const modal = document.querySelector('.document-modal');
   const modalImg = document.querySelector(".modal-img");
 
-  documentClose.addEventListener("click", function (e) {
-    modal.style.display = "none";
-    overlay.style.display = "none";
-  });
+  const closeDocumentModal = (e) => {
+    if (e.target.classList.contains('document-close') || !e.target.closest('.modal-img')) {
+      modal.style.display = "none";
+      overlay.style.display = "none";
+      document.querySelector('body').style.overflow = 'auto';
+    }
+  };
 
+  modal.addEventListener("click", closeDocumentModal);
 };
 
 export default documentModalFunc;

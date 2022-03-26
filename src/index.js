@@ -14,7 +14,7 @@ import sendCommentsFunc from "./modules/sendComments";
 modalFunc();
 benefitsSwiperFunc();
 serviceModalFunc();
-timerFunc('26 march 2022');
+timerFunc('28 march 2022');
 regexFunc();
 smoothScrollFunc();
 calcFunc(200);

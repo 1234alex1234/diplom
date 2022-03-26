@@ -8,10 +8,12 @@ const serviceModalFunc = () => {
   const serviceModalClose = document.querySelector('.services-modal__close');
   const serviceModal = document.querySelector('.services-modal');
 
-  const openServiceModal = () => {
+  function openServiceModal() {
 
     serviceModal.style.display = 'block';
+    overlay.style.zIndex = '9999';
     overlay.style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
 
     const documentWidth = document.documentElement.clientWidth;
     const popupContentWidth = serviceModal.clientWidth;
@@ -28,10 +30,11 @@ const serviceModalFunc = () => {
 
   };
 
-  const closeServiceModal = () => {
+  function closeServiceModal() {
 
     serviceModal.style.display = 'none';
     overlay.style.display = 'none';
+    document.querySelector('body').style.overflow = 'auto';
   };
 
 
@@ -40,6 +43,7 @@ const serviceModalFunc = () => {
     serviceButton.addEventListener("click", openServiceModal);
   });
   serviceModalClose.addEventListener("click", closeServiceModal);
+  overlay.addEventListener("click", closeServiceModal);
 
 };
 

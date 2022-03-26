@@ -33,7 +33,7 @@ const timerFunc = (deadLine) => {
   };
 
   const upDateClock = () => {
-    let getTime = getTimeRemaining('26 march 2022');
+    let getTime = getTimeRemaining('28 march 2022');
 
     timerDays.forEach(timerDay => {
       timerDay.textContent = noneZero(getTime.days);

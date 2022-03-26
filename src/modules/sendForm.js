@@ -5,6 +5,13 @@ const sendFormFunc = ({
   const formHorizontals = document.querySelectorAll(formClass);
   const headerModal = document.querySelector('.header-modal');
   const callBackForm = headerModal.querySelector('form');
+  const serviceModal = document.querySelector('.services-modal');
+  const serviceModalForm = serviceModal.querySelector('form');
+  const stutusBlock = document.createElement('div');
+  const loadText = 'Загрузка...';
+  const errorText = 'Ошибка...';
+  const successText = 'Данные успешно отправлены!';
+
 
   const validate = (lists) => {
     let isError = false;
@@ -12,7 +19,8 @@ const sendFormFunc = ({
     lists.forEach(list => {
 
       if (list.name === 'fio') {
-        if (!/[^а-яА-Яa-zA-Z\/' ']/gi.test(list.value) && list.value !== '') {
+        if (!/[^а-яА-Яa-zA-Z\/' ']/gi.test(list.value) && list.value !== '' && list.value.length > 5) {
+
 
         } else {
           isError = true;
@@ -20,7 +28,7 @@ const sendFormFunc = ({
       }
 
       if (list.name === 'phone') {
-        if (!/[^\d\/+]+/gi.test(list.value) && list.value !== '') {
+        if (!/[^\d\/+]+/gi.test(list.value) && list.value !== '' && list.value.length > 3) {
 
         } else {
           isError = true;
@@ -30,6 +38,10 @@ const sendFormFunc = ({
     });
 
     return isError;
+  };
+
+  const clearStatus = () => {
+    stutusBlock.textContent = '';
   };
 
   const sendData = (data) => {
@@ -64,13 +76,20 @@ const sendFormFunc = ({
       });
     }
 
+    stutusBlock.textContent = loadText;
+    stutusBlock.style.color = 'black';
+    this.append(stutusBlock);
+
     if (!validate(formElements)) {
       sendData(formBody).then(data => {
         formElements.forEach(input => {
+          stutusBlock.textContent = successText;
           input.value = '';
+          setTimeout(clearStatus, 2500);
         });
       }).catch(error => {
-        console.log(errorMessage);
+        stutusBlock.textContent = errorText;
+        setTimeout(clearStatus, 2500);
       });
     } else {
       alert("Данные не валидны!");
@@ -82,6 +101,7 @@ const sendFormFunc = ({
   });
 
   callBackForm.addEventListener("submit", submitForm);
+  serviceModalForm.addEventListener("submit", submitForm);
 };
 
 export default sendFormFunc;

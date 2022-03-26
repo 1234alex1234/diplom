@@ -10,11 +10,11 @@ const modalFunc = () => {
   const overlay = document.querySelector('.overlay');
   const headerModalClose = document.querySelector('.header-modal__close');
 
-
   const openHeaderModal = () => {
 
     headerModal.style.display = 'block';
     overlay.style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
 
     const documentWidth = document.documentElement.clientWidth;
     const popupContentWidth = headerModal.clientWidth;
@@ -31,14 +31,16 @@ const modalFunc = () => {
 
   };
 
-  const closeHeaderModal = () => {
+  const closeHeaderModal = (e) => {
 
     headerModal.style.display = 'none';
     overlay.style.display = 'none';
+    document.querySelector('body').style.overflow = 'auto';
   };
 
   button.addEventListener("click", openHeaderModal);
   headerModalClose.addEventListener("click", closeHeaderModal);
+  overlay.addEventListener("click", closeHeaderModal);
 
 };
 
